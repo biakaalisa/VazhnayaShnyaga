@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+</head>
+<body>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+
+    <p>Список дел</p>
+    <div id="items" style="display: flex; flex-direction: column; gap: 5px;">
+    </div>
+    <button id="addButton">Добавить дело</button>
+
+    </div>
+
+    <script>
+        const items = document.getElementById("items")
+        const addButton = document.getElementById("addButton")
+
+        let counter = -1;
+    
+        addButton.addEventListener("click", () =>{      //есть mouseenter - триггер при наведении, что-то потипу hover в css
+
+            const added = `
+                <div id=${"item_"+(counter+=1)}     /* интрополяция строк динамическое добавление обзывалова */
+                    style="width: 100%;
+                            height: auto;
+                            margin: 0;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;"> 
+
+                    <input/ style="width: 50%;
+                            height: auto;">
+
+                    <button id=${"item_"+(counter)+"_delete"}>Удалить</button>
+                    
+                </div>`      //для многострочного написания кода можно вместо " использовать `
+            items.insertAdjacentHTML("beforeend", added) //метод, берущий позицию, куда мы будеи вставлять элемент и то, что мы хотим вставить
+
+            const addedElement = document.getElementById("item_"+(counter)+"_delete")
+            const addedRow = document.getElementById("item_"+ counter)
+            
+            addedElement.addEventListener("click", () => {
+                addedRow.remove()
+            })
+        })
+    </script>
+
+</body>
+</html> 

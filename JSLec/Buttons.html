@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<!--     <script>
+            let a = {       //json-переменная
+                name: 'gfgg',
+                surname: 'fwg', 
+                parent: {
+                    name: 'vsag',
+                    surname: 'avg', 
+                }
+            }
+
+            alert(a.name)       //эквивалентная запись: alert(a["name"])
+            alert(a.parent.surname)
+        </script> -->
+    
+    <style>
+        .dialogContainer{
+            position: fixed;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .dialogCard{
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(252, 0, 0, 0.5);
+            width: 50vw;
+            height: auto;
+            padding: 5%;
+            box-sizing: content-box;
+            justify-content: center;    /*вравнивание по y */               
+            align-items: center;        /*выравнивание по x */
+            gap: 10px;
+        }
+
+        .open{
+            display: flex;
+        }
+
+        .close{
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+    <button onclick="alert('swfg')">КНОПА</button>    <!--инлайновый метод обработки кнопки -->
+
+    <button id="butt">КНОП</button>    <!--метод обработки кнопки по id (строки 28-33)-->
+    <script>
+
+        const butt = document.getElementById("butt")
+        butt.addEventListener("click", () => {butt.style = "color: red"}) //при нажатии текс кнопки станет красным
+
+    </script>
+
+    <button id="BOW">Призыв диалогового окна</button>
+
+    <div class="dialogContainer close" id="container">
+        <div class="dialogCard" id="card">
+            <p>Данные гоните</p>
+            <input/>
+            <input/>
+            <input/>
+            <button id="BCW">Абра-кадабра, закройся</button>
+        </div>
+    </div>
+
+    <script>
+        const ButtonOpenWindow = document.getElementById("BOW")     //обращения происходт по id
+        const ButtonCloseWindow = document.getElementById("BCW")
+        const Container = document.getElementById("container")
+        const Card = document.getElementById("card")
+
+        ButtonOpenWindow.addEventListener("click", () =>{
+            container.classList.remove('close');
+            container.classList.add('open')
+        })
+
+        function CloseWindow(){
+            container.classList.remove('open');
+            container.classList.add('close')
+        }
+        ButtonCloseWindow.addEventListener("click", CloseWindow)
+        Container.addEventListener("click", CloseWindow)
+
+        Card.addEventListener("click", (ev) => {
+            ev.stopPropagation();    // Отмена связи ребенок - родитель. Действия родителя теперь накак не связаны с дествиям ребенка
+        })
+    </script>
+
+</body>
+</html> 
